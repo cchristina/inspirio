@@ -1,0 +1,80 @@
+{% block content %}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+      background-color: 202020;
+      color: cccccc;
+    }
+        </style>
+
+</head>
+
+<body>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+<div class="row">
+    <div class='col-10 offset-1'>
+
+    Welcome to my bitspiration bot. Check off the themes you want, and be inspired. Or check nothing and just get everything.
+    </div>  
+</div>
+<div class="row">
+    <div class='col-2 offset-1'>test</div>
+
+<br><br><br>
+<div class='col-12'></div>
+    <div class='col-4 offset-1' ><form id ="categories" name="categories" action="/make" method="POST">
+        <table>
+            {%- for row in cats|batch(3, '') %}
+              <tr>
+              {%- for cat in row %}
+                {% if cat %}
+              
+                <td><input type="checkbox" id="{{cat}}" name="{{cat}}" value="{{cat}}">
+                    <label for="{{cat}}">{{cat}}</label></td>
+
+                    {% endif %}
+                    {%- endfor %}
+              </tr>
+            {%- endfor %}
+            </table>
+        <input type="submit" value="submit"> 
+
+    </form></div>
+
+    <div class='col-3' ><img src="{{pic}}"></div>
+
+</div>
+<div class="row">
+    {% if q %}
+    <div class="col-10 offset-1" style="background-color: cccccc; color: 333333;">
+        
+        "<em>{{q}}</em>"  <br> – {{a}}
+
+    </div> 
+    {% endif %}
+    <div class="col-10">
+        <form action="/tumblr">
+            <input type="hidden" id="savestring" name="savestring" value="{{pic}}">
+
+
+            <input type="submit" value="post current to tumblr"> 
+        </form>
+
+    </div>
+
+
+</div>
+
+</body>
+{% endblock %}

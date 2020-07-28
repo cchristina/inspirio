@@ -1,0 +1,10 @@
+.DS_Store
+.ipynb_checkpoints/
+.vscode/
+__pycache__/
+testingnotebook.ipynb
+tumblr_keys.py
+/static/disabledfonts/
+/static/images/tmpout/
+/static/images/testdel/
+
