@@ -137,7 +137,7 @@ def get_fontsize(wrappedtext):
     char_lens = [len(' '.join(w)) for w in wrappedtext]
     char_len = max(char_lens)
     print(char_len)
-    return 2000//char_len
+    return 500//char_len
 
 
 def make_chains(quote_words):
@@ -222,11 +222,11 @@ def make_random_pic(quotespeaker, quotewords):
     img = Image.open(BytesIO(response.content))
     img.save( "./static/images/testdel/TEMP.png")
 
-    font_choice = random.choice([f for f in os.listdir(fonts) if not f.startswith(".")])
-    font_choice = fonts+font_choice
-    print(font_choice, "********* chosen font for words")
+    # font_choice = random.choice([f for f in os.listdir(fonts) if not f.startswith(".")])
+    # font_choice = fonts+font_choice
+    # print(font_choice, "********* chosen font for words")
 
-    font = TTFont(font_choice)
+    # font = TTFont(font_choice)
  
 
 
@@ -250,42 +250,49 @@ def make_random_pic(quotespeaker, quotewords):
 
     draw = ImageDraw.Draw(img)
 
-    # wrappedtext = wrappit(quotewords)
+
     wrappedtext = wrappit(quotewords)
 
 
 
-    # wrappedtext = textwrap.wrap(quotewords)
+
 
     font_size = get_fontsize(wrappedtext)
-    print("************", font_size, wrappedtext)
+
+
+
+
+
+ 
+
+
+
+    font_choice = random.choice([f for f in os.listdir(fonts+"quotes/") if not f.startswith(".")])
+
+    font_choice = fonts+"quotes/"+font_choice
 
     font = ImageFont.truetype(font_choice, font_size)
 
-
-    # wrappedtext = textwrap.wrap(quotewords, width=20)
-
-    # if len(wrappedtext) > 10:
-    #     font = ImageFont.truetype(font_choice, 40)
-    # elif len(wrappedtext) > 12:
-    #     font = ImageFont.truetype(font_choice, 30)
-
-
-
-
-    font_choice = random.choice(os.listdir(fonts))
-    font_choice = fonts+font_choice
-
     for i, line in enumerate(wrappedtext):
         print(i, line)
-        draw.text((10,(i+1)*font_size),line, fill=palette[0], stroke_width=2, stroke_fill=(palette[0][0]//4, palette[0][1]//4, palette[0][2]//4), font=font)#,  )#,  )
+
+        if max((palette[0][0], palette[0][1], palette[0][2])) >  128:
+
+            stroke_color = (palette[0][0]//4, palette[0][1]//4, palette[0][2]//4)
+            # stroke_color = (0,0,0)
+        else:
+            stroke_color = (palette[0][0]*2, palette[0][1]*2, palette[0][2]*2)          
+            # stroke_color = (255, 255, 255)
+
+
+        draw.text((10,(i+1)*font_size),line, fill=palette[0], stroke_width=2, stroke_fill=stroke_color, font=font)#,  )#,  )
     
 
-    # font_choice = random.choice(os.listdir(fonts))
-    # font_choice = fonts+font_choice
-    font_choice = random.choice(["./static/fonts/Buda-Light.ttf"])
+    font_choice = random.choice([f for f in os.listdir(fonts+"names/") if not f.startswith(".")])
+    font_choice = fonts+"names/"+font_choice
 
-    print(font_choice, "********* chosen font for person")
+
+
 
 
     font = ImageFont.truetype(font_choice, 30)
