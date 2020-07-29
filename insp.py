@@ -136,9 +136,10 @@ def wrappit(phrase):
 def get_fontsize(wrappedtext):
     char_lens = [len(' '.join(w)) for w in wrappedtext]
     char_len = max(char_lens)
-    print(char_len)
-    return 500//char_len
-
+    size = int(np.interp(char_len,[0, 100], [60, 25 ]))
+    print(f"@@@@@@@@ SIZE: {size}")
+    # return 3000//char_len
+    return size
 
 def make_chains(quote_words):
 
@@ -412,7 +413,7 @@ def add_header(response):
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
     # point that we invoke the DebugToolbarExtension
-    # app.debug = True
+    app.debug = True
     # make sure templates, etc. are not cached in debug mode
     app.jinja_env.auto_reload = app.debug
 
