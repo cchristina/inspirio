@@ -1,5 +1,5 @@
 colorthief==0.2.1
-Jinja2==2.10.1
+Jinja2==2.11.3
 jsonschema==3.0.0
 Flask==1.1.1
 Flask-DebugToolbar==0.10.1
