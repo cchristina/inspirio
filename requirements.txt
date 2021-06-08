@@ -6,7 +6,7 @@ Flask-DebugToolbar==0.10.1
 fonttools==4.12.1
 numpy==1.18.1
 pandas==0.25.0
-Pillow==7.1.2
+Pillow==8.2.0
 PyTumblr==0.1.0
 regex==2020.6.8
 requests==2.21.0
