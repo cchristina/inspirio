@@ -4,7 +4,7 @@ jsonschema==3.0.0
 Flask==1.1.1
 Flask-DebugToolbar==0.10.1
 fonttools==4.12.1
-numpy==1.18.1
+numpy==1.22.0
 pandas==0.25.0
 Pillow==7.1.2
 PyTumblr==0.1.0
